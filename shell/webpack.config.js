@@ -15,7 +15,7 @@ module.exports = (_, argv) => ({
     port: 8080,
     historyApiFallback: true,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Origin": "*",
     },
   },
 
@@ -43,10 +43,10 @@ module.exports = (_, argv) => ({
         test: /\.(png|jpg|jpeg|gif|svg|ico)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              outputPath: 'images', // This is the directory where your images will be output
+              name: "[name].[ext]",
+              outputPath: "images", // This is the directory where your images will be output
             },
           },
         ],
@@ -71,8 +71,15 @@ module.exports = (_, argv) => ({
       name: "shell",
       filename: "remoteEntry.js",
       remotes: {
-        app1: 'app1@http://localhost:8081/remoteEntry.js',
-        app2: 'app2@http://localhost:8082/remoteEntry.js',
+        app1:
+          argv.mode === "development"
+            ? "app1@http://localhost:8081/remoteEntry.js"
+            : "app1@https://mf-router-v6-app1.vercel.app/remoteEntry.js",
+
+        app2:
+          argv.mode === "development"
+            ? "app2@http://localhost:8082/remoteEntry.js"
+            : "app2@https://mf-router-v6-app2.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: {
