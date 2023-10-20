@@ -2,9 +2,12 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:8081/",
+    publicPath:
+      argv.mode === "development"
+        ? "http://localhost:8081/"
+        : "https://mf-router-v6-app1.vercel.app/",
   },
 
   resolve: {
@@ -15,7 +18,7 @@ module.exports = {
     port: 8081,
     historyApiFallback: true,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Origin": "*",
     },
   },
 
@@ -43,10 +46,10 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|svg|ico)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              outputPath: 'images', // This is the directory where your images will be output
+              name: "[name].[ext]",
+              outputPath: "images", // This is the directory where your images will be output
             },
           },
         ],
@@ -72,7 +75,7 @@ module.exports = {
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        './App1Index': './src/bootstrap',
+        "./App1Index": "./src/bootstrap",
       },
       shared: {
         ...deps,
@@ -90,4 +93,4 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
-};
+});
