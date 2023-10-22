@@ -6,10 +6,6 @@
       "dest": "/remoteEntry.js"
     },
     {
-      "src": "/app2/manifest.json",
-      "dest": "/manifest.json"
-    },
-    {
       "src": "/app2/*",
       "dest": "/app2/index.html"
     },
