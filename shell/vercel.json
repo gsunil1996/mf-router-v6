@@ -1,0 +1,17 @@
+{
+  "routes": [
+    { "handle": "filesystem" },
+    {
+      "src": "/app1/.*",
+      "dest": "/app1"
+    },
+    {
+      "src": "/app2/.*",
+      "dest": "/app2"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}
