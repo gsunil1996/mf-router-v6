@@ -1,20 +1,25 @@
 {
-  "rewrites": [
+  "routes": [
+    { "handle": "filesystem" },
     {
-      "source": "/app1/remoteEntry.js",
-      "destination": "/remoteEntry.js"
+      "src": "/app1/remoteEntry.js",
+      "dest": "/remoteEntry.js"
     },
     {
-      "source": "/app1/manifest.json",
-      "destination": "/manifest.json"
+      "src": "/app1/manifest.json",
+      "dest": "/manifest.json"
     },
     {
-      "source": "/app1/*",
-      "destination": "/index.html"
+      "src": "/app1/*",
+      "dest": "/app1/index.html"
     },
     {
-      "source": "/app1",
-      "destination": "/index.html"
+      "src": "/app1",
+      "dest": "/app1/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
