@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/app1/remoteEntry.js",
+      "destination": "/remoteEntry.js"
+    },
+    {
+      "source": "/app1/manifest.json",
+      "destination": "/manifest.json"
+    },
+    {
+      "source": "/app1/*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/app1",
+      "destination": "/index.html"
+    }
+  ]
+}
